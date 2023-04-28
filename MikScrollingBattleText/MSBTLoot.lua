@@ -99,7 +99,12 @@ local function HandleItems(parserEvent)
  -- looted to it if the item wasn't the result of a conjure.
  local numLooted = parserEvent.amount or 1
  local numItems = GetItemCount(itemLink) or 0
- local numTotal = numItems + numLooted
+ local numTotal = 0
+ if numItems == 0 then
+	numTotal = numItems + numLooted
+ else
+	numTotal = numItems
+ end
 
  -- Format the event and display it.
  local eventSettings = MSBTProfiles.currentProfile.events.NOTIFICATION_LOOT
